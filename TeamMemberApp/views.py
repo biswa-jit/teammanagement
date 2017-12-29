@@ -22,23 +22,16 @@ class TeamMemberView(View):
         """
         Add a member to database.
         """
-        print 25
-        print 26,request.body
         member_data = json.loads(request.body)
-        print 28,member_data
         try:
             member = utils.add_member(member_data)
             self.response["data"] = member
         except ValidationError as e:
             self.response["status"] = False
             self.response["msg"] = e.message_dict
-            import traceback
-            print 33,traceback.format_exc()
         except Exception as ex:
             self.response["status"] = False
             self.response["msg"] = str(ex)
-            import traceback
-            print 35,traceback.format_exc()
         return HttpResponse(json.dumps(self.response))
         
 
@@ -64,8 +57,6 @@ class TeamMemberView(View):
         except Exception as ex:
             self.response["status"] = False
             self.response["msg"] = str(ex)
-            import traceback
-            print 35,traceback.format_exc()
         return HttpResponse(json.dumps(self.response))
     
     def delete(self,request):
