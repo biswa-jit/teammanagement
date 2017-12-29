@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import TeamMemberApp.views as views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^member/', views.TeamMemberView.as_view()),
 ]
